@@ -1,0 +1,81 @@
+@font-face {
+    font-family: 'GT Super';
+    src: url('GT-Super-Display-Light.ttf');
+    src: url('GT-Super-Display-Light.otf') format('opentype'),
+        url('GT-Super-Display-Light.woff2') format('woff2'),
+        url('GT-Super-Display-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Super';
+    src: url('GT-Super-Display-Light-Italic.ttf');
+    src: url('GT-Super-Display-Light-Italic.otf') format('opentype'),
+        url('GT-Super-Display-Light-Italic.woff2') format('woff2'),
+        url('GT-Super-Display-Light-Italic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'GT Super';
+    src: url('GT-Super-Display-Medium.ttf');
+    src: url('GT-Super-Display-Medium.otf') format('opentype'),
+        url('GT-Super-Display-Medium.woff2') format('woff2'),
+        url('GT-Super-Display-Medium.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Super';
+    src: url('GT-Super-Display-Medium-Italic.ttf');
+    src: url('GT-Super-Display-Medium-Italic.otf') format('opentype'),
+        url('GT-Super-Display-Medium-Italic.woff2') format('woff2'),
+        url('GT-Super-Display-Medium-Italic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'GT Super';
+    src: url('GT-Super-Text-Book.ttf');
+    src: url('GT-Super-Text-Book.otf') format('opentype'),
+        url('GT-Super-Text-Book.woff2') format('woff2'),
+        url('GT-Super-Text-Book.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GT Super';
+    src: url('GT-Super-Text-Book-Italic.ttf');
+    src: url('GT-Super-Text-Book-Italic.otf') format('opentype'),
+        url('GT-Super-Text-Book-Italic.woff2') format('woff2'),
+        url('GT-Super-Text-Book-Italic.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Platform';
+    src: url('Platform-Regular.otf');
+    src: url('Platform-Regular.otf') format('opentype'),
+        url('Platform-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Platform';
+    src: url('Platform-Medium.otf');
+    src: url('Platform-Medium.otf') format('opentype'),
+        url('Platform-Medium.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+
+body, html {
+    font-family: 'GT Super', serif;
+}

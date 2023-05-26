@@ -10,6 +10,28 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily: {
+      'GTSuper': ['GT Super', 'serif'],
+      'Platform': ['Platform', 'sans-serif']
+    },
+    fontSize: {
+      body: ['14px', '16px'],
+      med: ['24', '32px'],
+      h1: ['80px', '80px'],
+      h2: ['80px', '80px'],
+      h3: ['64', '64px'],
+      h4: ['32', '32px']
+    },
+    colors: {
+      teel: '#85ABBD',
+      neon: '#E3FF21',
+      black: '#000000'
+    },
+    backgroundColor: theme=> ({
+      teel: '#85ABBD',
+      neon: '#E3FF21',
+      black: '#000000'
+    })
   },
   plugins: [],
 }

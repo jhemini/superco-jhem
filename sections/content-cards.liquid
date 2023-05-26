@@ -1,0 +1,98 @@
+<div class="cards-wrapper section-wrapper">
+  {% if section.settings.section_title %}
+    <div class="section-title text-center font-light">
+      <h2 class="mb-0">{{ section.settings.section_title }}</h2>
+    </div>
+  {% endif %}
+  {% if section.blocks != blank %}
+    <div class="cards-wrapper flex flex-row flex-wrap mx-[-10px]">
+      {% for block in section.blocks %}
+        <div class="card-wrapper px-[5px] w-[25%] bg-[{{- block.settings.card_bg -}}]">
+          <div
+            class="card-image"
+            style="background: url('{{ block.settings.card_image | img_url: 'master' }}') no-repeat cent er / cover;"
+          >
+            <img
+              src="{{ block.settings.card_image | img_url: 'master' }}"
+              loading="lazy"
+              alt="{{ block.settings.card_title }}"
+              style="opacity: 0;"
+            >
+          </div>
+          <div class="card-content">
+            <div class="top-content">
+              {% if block.settings.card_title != blank %}
+                <h4>{{ block.settings.card_title }}</h4>
+              {% endif %}
+              {% if block.settings.card_desc != blank %}
+                <p>{{ block.settings.card_desc }}</p>
+              {% endif %}
+            </div>
+            {% if block.settings.card_link_label %}
+            <div class="bottom-content">
+              <p>{% if block.settings.card_link %}<a href="{{ block.settings.card_link }}">{% endif %}{{ block.settings.card_link_label }}{% if block.settings.card_link %}</a>{% endif %}</p>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Content Cards",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card_content",
+      "name": "Card Content",
+      "settings": [
+        {
+          "type": "color",
+          "id": "card_bg",
+          "label": "Card Background Color"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image",
+          "label": "Card Image"
+        },
+        {
+          "type": "text",
+          "id": "card_title",
+          "label": "Card Title"
+        },
+        {
+          "type": "textarea",
+          "id": "card_desc",
+          "label": "Card Description"
+        },
+        {
+          "type": "text",
+          "id": "card_link_label",
+          "label": "Card Link Label"
+        },
+        {
+          "type": "url",
+          "id": "card_link",
+          "label": "Card Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Content Cards",
+      "category": "Tile Contennt"
+    }
+  ]
+}
+{% endschema %}

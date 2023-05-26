@@ -2,4 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
-@import 'header'
+@layer base {
+    h1 {
+        @apply text-h1 mb-[30px];
+    }
+    h2 {
+        @apply text-h1 mb-[30px];
+    }
+    h3 {
+        @apply text-h3 mb-[30px];
+    }
+    h4 {
+        @apply text-h4 mb-[30px];
+    }
+    p {
+        @apply text-body mb-[16px];
+    }
+}
+
+@layer utilities {
+    .section-wrapper {
+        padding: 40px 0;
+    }
+
+    .shopify-section:first-child .section-wrapper {
+        padding-top: 0;
+    }
+
+    .main-header .logo-wrapper {
+        width: 920px;
+        padding-top: 88px;
+    }
+
+    body.sticky-header .header-wrapper .main-header {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 10;
+    }
+
+    .main-header .logo-wrapper {
+        min-width: 180px;
+    }
+
+    .main-header .header-intro-text {
+        position: absolute;
+        top: calc(50% + 44px);
+        right: 20px;
+        margin: auto;
+        transform: translateY(-50%);
+        width: 320px;
+        opacity: 1;
+        transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    }
+
+    .main-header .header-intro-text.fade-up {
+        transform: translateY(calc(-50% - 20px));
+        opacity: 0;
+        transition: all 0.2s ease-in-out;
+    }
+}
+
+@layer components {
+    .section-title {
+        margin-bottom: 60px;
+    }
+}
+
+@import 'global';
+@import 'typography';
+@import 'header';

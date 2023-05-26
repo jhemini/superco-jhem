@@ -1,0 +1,11 @@
+.visually-hidden {
+	display: none;
+	visibility: none;
+}
+
+/* HELPER CLASSES */
+.content-max {
+	max-width: calc(1400px + 40px); // 1224px max content width, 60px for side paddings
+	padding: 0 20px;
+	margin: 0 auto;
+}
