@@ -31,23 +31,28 @@
           </div>
         </div>
         <div class="w-[75%] px-[20px] relative">
-          <div class="main-navigation absolute top-[14px] right-[20px]">
+          <div class="main-navigation absolute top-[14px] right-[20px] flex flex-row justify-end items-center">
             {% if section.settings.header_nav != blank %}
-              <ul class="flex flex-row justify-end">
+              <ul class="nav-list flex flex-row justify-end items-center">
                 {%- assign nav_linklists = section.settings.header_nav -%}
                 {% for link in linklists[nav_linklists].links %}
                   <li class="mx-[16px] font-Platform font-normal text-body tracking-[0.25em] uppercase">
                     <a href="{{- link.url -}}">{{- link.title -}}</a>
                   </li>
                 {% endfor %}
-                <li class="search-toggle mx-[16px]">
-                  <a href="#">{% render 'icon-search' %}</a>
-                </li>
-                <li class="search-toggle mx-[16px] mr-0">
-                  <a href="#">{% render 'icon-bag' %}</a>
-                </li>
               </ul>
             {% endif %}
+            <ul class="nav-icon-wrapper flex flex-row justify-end items-center">
+              <li class="search-toggle mx-[16px]">
+                <a href="#">{% render 'icon-search' %}</a>
+              </li>
+              <li class="cart-toggle mx-[16px]">
+                <a href="#">{% render 'icon-bag' %}</a>
+              </li>
+              <li class="hamburger-wrapper mx-[16px] mr[-0]">
+                {% render 'hamburger-nav' %}
+              </li>
+            </ul>
           </div>
         </div>
         {% if section.settings.header_intro != blank %}

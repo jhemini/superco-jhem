@@ -6,16 +6,16 @@
 					</div>
         {% endif %}
         {% if section.blocks != blank %}
-            <div class="tiles-wrapper flex flex-row flex-wrap mx-[-10px] items-stretch">
+            <div class="tiles-wrapper flex flex-row flex-wrap mx-[-10px] items-stretch max-[767px]:mx-[-20px]">
                 {% for block in section.blocks %}
-									<div class="tile-column px-[5px] w-[50%]">
+									<div class="tile-column px-[5px] w-[50%] max-[767px]:w-[100%] max-[767px]:mb-[20px] max-[767px]:px-0">
 										<div class="tile-wrapper" style="background: url('{{ block.settings.bg_image | img_url: 'master' }}')no-repeat center / cover;">
 											<div class="tile-content">
 												{% if block.settings.tile_title != blank %}
-												<h4>{{ block.settings.tile_title }}</h4>
+												<h4 class="max-[767px]:text-h4">{{ block.settings.tile_title }}</h4>
 												{% endif %}
 												{% if block.settings.tile_link_label != blank %}
-												<p>{% if block.settings.tile_link != blank %}<a href="{{ block.settings.tile_link }}">{% endif %}{{ block.settings.tile_link_label }}{% if block.settings.tile_link != blank %}</a>{% endif %}</p>
+												<p class="max-[767px]:text-[12px]">{% if block.settings.tile_link != blank %}<a href="{{ block.settings.tile_link }}">{% endif %}{{ block.settings.tile_link_label }}{% if block.settings.tile_link != blank %}</a>{% endif %}</p>
 												{% endif %}
 											</div>
 										</div>

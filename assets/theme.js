@@ -39,12 +39,17 @@ window.addEventListener('resize', function () {
     maxLogoWidth = 920;
     logoPadTop = 80;
     imageBannerBottom = imageBannerTop + imageBanner.offsetHeight - 500;
-  } else if (viewportWidth < 1440) {
+  } else if (viewportWidth >= 768 && viewportWidth < 1440) {
     minLogoWidth = 180;
     maxLogoWidth = 600;
     logoPadTop = 80;
     imageBannerBottom = imageBannerTop + imageBanner.offsetHeight - 400;
-  } else {}
+  } else if (viewportWidth >= 320 && viewportWidth < 768) {
+    minLogoWidth = 104;
+    maxLogoWidth = viewportWidth - 40;
+    logoPadTop = 80;
+    imageBannerBottom = imageBannerTop + imageBanner.offsetHeight - 200;
+  }
 });
 window.addEventListener('load', function () {
   mainHeaderHeight = mainHeader.offsetHeight;
@@ -70,14 +75,24 @@ window.addEventListener('load', function () {
       mainLogo.style.paddingTop = '0px';
     }
     if (html.scrollTop <= mainHeaderHeight / 4) {
-      headerIntro.style.opacity = (mainHeaderHeight - html.scrollTop) / mainHeaderHeight;
+      headerIntro.classList.remove('collapse');
     } else {
-      headerIntro.style.opacity = 0;
+      headerIntro.classList.add('collapse');
     }
     if (html.scrollTop >= imageBannerBottom) {
       document.body.classList.add('header-transparent');
     } else {
       document.body.classList.remove('header-transparent');
+    }
+  });
+});
+window.addEventListener('DOMContentLoaded', function () {
+  var hamburgerIcon = document.querySelector('.hamburger-wrapper');
+  var bodyElement = hamburgerIcon.addEventListener('click', function () {
+    if (document.body.classList.contains('mobile-menu-active')) {
+      document.body.classList.remove('mobile-menu-active');
+    } else {
+      document.body.classList.add('mobile-menu-active');
     }
   });
 });
