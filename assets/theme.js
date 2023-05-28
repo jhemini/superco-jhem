@@ -14,38 +14,53 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 var mainHeader = document.querySelector('.main-header');
 var topHeader = document.querySelector('.top-header-wrapper');
+var html = document.documentElement;
+var mainContent = document.querySelector('#MainContent');
+var headerIntro = document.querySelector('.main-header .header-intro-text');
+var topHeaderHeight = topHeader.offsetHeight;
+var mainHeaderHeight = mainHeader.offsetHeight;
+var imageBanner = document.querySelector('.banner-image-section');
+var imageBannerTop = imageBanner.offsetTop;
+var imageBannerBottom = imageBannerTop + imageBanner.offsetHeight - 500;
+var mainLogo = document.querySelector('.main-header .logo-wrapper');
 var minLogoWidth = 180;
 var maxLogoWidth = 920;
 var logoPadTop = 80;
-var topHeaderHeight = topHeader.offsetHeight;
-var mainHeaderHeight = mainHeader.offsetHeight;
 var headerComponent = function headerComponent() {
   var headerWrapper = document.querySelector('.header-wrapper');
 };
 window.addEventListener('resize', function () {
   mainHeaderHeight = mainHeader.offsetHeight;
   topHeaderHeight = topHeader.offsetHeight;
+  imageBannerTop = imageBanner.offsetTop;
+  var viewportWidth = document.documentElement.offsetWidth;
+  if (viewportWidth >= 1440) {
+    minLogoWidth = 180;
+    maxLogoWidth = 920;
+    logoPadTop = 80;
+    imageBannerBottom = imageBannerTop + imageBanner.offsetHeight - 500;
+  } else if (viewportWidth < 1440) {
+    minLogoWidth = 180;
+    maxLogoWidth = 600;
+    logoPadTop = 80;
+    imageBannerBottom = imageBannerTop + imageBanner.offsetHeight - 400;
+  } else {}
 });
 window.addEventListener('load', function () {
   mainHeaderHeight = mainHeader.offsetHeight;
   topHeaderHeight = topHeader.offsetHeight;
-  var html = document.documentElement;
-  var mainContent = document.querySelector('#MainContent');
-  var mainLogo = document.querySelector('.main-header .logo-wrapper');
+  window.dispatchEvent(new Event('resize'));
   window.addEventListener('scroll', function () {
     if (html.scrollTop >= topHeaderHeight) {
       document.body.classList.add('sticky-header');
       mainContent.style.marginTop = mainHeader.offsetHeight + 'px';
-      document.querySelector('.main-header .header-intro-text').classList.add('fade-up');
     } else {
       document.body.classList.remove('sticky-header');
       mainContent.style.marginTop = '0px';
-      document.querySelector('.main-header .header-intro-text').classList.remove('fade-up');
     }
 
     // Resizing of logo base on scroll;
-    console.log('scroll', html.scrollTop);
-    if (html.scrollTop <= mainHeaderHeight && mainLogo.offsetWidth >= 180) {
+    if (html.scrollTop <= mainHeaderHeight && mainLogo.offsetWidth >= minLogoWidth) {
       var logoWidth = (mainHeaderHeight - html.scrollTop) / mainHeaderHeight * maxLogoWidth;
       var logoPaddingTop = (mainHeaderHeight - html.scrollTop) / mainHeaderHeight * logoPadTop;
       mainLogo.style.width = logoWidth + 'px';
@@ -54,15 +69,18 @@ window.addEventListener('load', function () {
       mainLogo.style.width = minLogoWidth + 'px';
       mainLogo.style.paddingTop = '0px';
     }
-
-    // if (html.scrollTop >= (mainHeaderHeight / 6)) {
-    //     document.querySelector('.main-header .header-intro-text').classList.add('fade-up');
-    // } else {
-    //     document.querySelector('.main-header .header-intro-text').classList.remove('fade-up');
-    // }
+    if (html.scrollTop <= mainHeaderHeight / 4) {
+      headerIntro.style.opacity = (mainHeaderHeight - html.scrollTop) / mainHeaderHeight;
+    } else {
+      headerIntro.style.opacity = 0;
+    }
+    if (html.scrollTop >= imageBannerBottom) {
+      document.body.classList.add('header-transparent');
+    } else {
+      document.body.classList.remove('header-transparent');
+    }
   });
 });
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (headerComponent);
 
 /***/ }),

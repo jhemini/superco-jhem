@@ -1,0 +1,83 @@
+<div class="featured-products-section section-wrapper">
+	<div class="container content-max">
+		{% if section.settings.section_title != blank %}
+			<div class="section-title text-center font-light">
+				<h2 class="mb-0">{{ section.settings.section_title }}</h2>
+			</div>
+		{% endif %}
+		<div class="carousel-container">
+			<div class="carousel-wrapper mx-[-1px]" id="carousel-{{- section.id -}}">
+				{% for product in collections[section.settings.featured_collection].products %}
+					{% assign featured_image = product.selected_or_first_available_variant.featured_image | default: product.featured_image %}
+					{% assign variant = product.selected_or_first_available_variant %}
+					<div class="product-slide px-[1px] w-[25%]">
+						<div class="inner-wrapper flex flex-row flex-wrap">
+							<div class="slide-image w-[100%]" style="background: url('{{ featured_image | img_url: 'master' }}') no-repeat center / cover;">
+							</div>
+							<div class="product-meta w-[100%] flex flex-row items-center bg-[#FFFFFF] p-[20px]">
+								<p class="text-med w-[80%] font-GTSuper italic text-med mb-0 font-light"><a href="{{ product.url }}" data-product-id="{{ variant.id }}" class="text-med">{{ product.title }}</a></p>
+								<p class="w-[20%] mb-0">{{ currency.symbol }}{{ product.price | money_without_currency }}</p>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function() {
+		console.log('init carousel');
+		$('#carousel-{{- section.id -}}').slick({
+			slidesToShow: 3,
+			slidesToScroll: 1,
+			dots: false,
+			arrows: true,
+			prevArrow: `<button class="slick-prev slick-arrow" aria-label="Previous"></button>`,
+			nextArrow: `<button class="slick-next slick-arrow" aria-label="Next"></button>`,
+			responsive: [
+					{
+							breakpoint: 769,
+							settings: {
+									slidesToShow: 2,
+									slidesToScroll: 2,
+									dots: false
+							}
+					},
+					{
+							breakpoint: 481,
+							settings: {
+									slidesToShow: 2,
+									slidesToScroll: 2,
+									dots: false
+							}
+					}
+			]
+		})
+	});
+</script>
+
+{% schema %}
+{
+	"name": "Featured Product Carousel",
+	"settings": [
+		{
+			"type": "text",
+			"id": "section_title",
+			"label": "Section Title"
+		},
+		{
+			"type": "collection",
+			"id": "featured_collection",
+			"label": "Featured Collection"
+		}
+	],
+	"presets": [
+		{
+			"name": "Featured Product Carousel",
+			"category": "Tile Content"
+		}
+	]
+}
+{% endschema %}

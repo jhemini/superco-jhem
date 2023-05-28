@@ -16,11 +16,11 @@ module.exports = {
     },
     fontSize: {
       body: ['14px', '16px'],
-      med: ['24', '32px'],
+      med: ['24px', '32px'],
       h1: ['80px', '80px'],
       h2: ['80px', '80px'],
-      h3: ['64', '64px'],
-      h4: ['32', '32px']
+      h3: ['64px', '64px'],
+      h4: ['32px', '32px']
     },
     colors: {
       teel: '#85ABBD',

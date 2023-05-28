@@ -6,5 +6,16 @@
     "theme_author": "Shopify",
     "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
     "theme_support_url": "https://support.shopify.com/"
+  },
+  {
+    "name": "Body Background",
+    "settings": [
+      {
+        "type": "color",
+        "id": "body_bg",
+        "label": "Page Background Color",
+        "default": "#FFFFF"
+      }
+    ]
   }
 ]

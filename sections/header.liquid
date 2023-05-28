@@ -1,25 +1,30 @@
 <header class="header-wrapper bg-teel">
-  <div class="top-header-wrapper py-[12px] border-b border-black">
+  <div class="top-header-wrapper py-[12px] border-b border-black max-[768px]:hidden">
     <div class="container content-max">
-      <div class="flex flex-row flex-wrap mx-[-30px]">
+      <div class="flex flex-row flex-wrap mx-[-20px]">
         <div class="w-[50%] px-[20px]">
+          {% if section.settings.top_header_welcome != blank %}
           <div class="col-left">
-            <p class="font-GTSuper italic text-body mb-0">Meet Festive & Co</p>
+            <p class="font-GTSuper italic text-body mb-0">{{ section.settings.top_header_welcome }}</p>
           </div>
+          {% endif %}
         </div>
         <div class="w-[50%] px-[20px]">
-          <ul class="flex flex-row justify-end">
-            <li class="list-none mx-[20px] font-GTSuper italic text-body"><a href="">Account</a></li>
-            <li class="list-none mx-[20px] font-GTSuper italic text-body"><a href="">Contact</a></li>
-            <li class="list-none mx-[20px] font-GTSuper italic text-body"><a href="">Shop</a></li>
+          {% if section.settings.top_header_nav != blank %}
+          <ul class="top-nav-wrapper flex flex-row justify-end">
+            {%- assign topNav = section.settings.top_header_nav -%}
+            {% for link in linklists[topNav].links %}
+            <li class="list-none mx-[20px] font-GTSuper italic text-body"><a href="{{ link.url }}">{{ link.title }}</a></li>
+            {% endfor %}
           </ul>
+          {% endif %}
         </div>
       </div>
     </div>
   </div>
   <div class="main-header py-[26px] bg-teel">
     <div class="container content-max">
-      <div class="flex flex-row flex-wrap mx-[-30px] items-stretched relative">
+      <div class="flex flex-row flex-wrap mx-[-20px] items-stretched relative">
         <div class="w-[25%] px-[20px] overflow-visible">
           <div class="logo-wrapper">
             <img src="{{ section.settings.header_logo | img_url: 'master' }}" alt="site-logo">
@@ -35,6 +40,12 @@
                     <a href="{{- link.url -}}">{{- link.title -}}</a>
                   </li>
                 {% endfor %}
+                <li class="search-toggle mx-[16px]">
+                  <a href="#">{% render 'icon-search' %}</a>
+                </li>
+                <li class="search-toggle mx-[16px] mr-0">
+                  <a href="#">{% render 'icon-bag' %}</a>
+                </li>
               </ul>
             {% endif %}
           </div>
@@ -59,6 +70,11 @@
       "label": "Header Welcome Text"
     },
     {
+      "type": "link_list",
+      "id": "top_header_nav",
+      "label": "Top Header Nav"
+    },
+    {
       "type": "image_picker",
       "id": "header_logo",
       "label": "Header Logo"
@@ -66,7 +82,7 @@
     {
       "type": "link_list",
       "id": "header_nav",
-      "label": "Header Navigation"
+      "label": "Main  Header Navigation"
     },
     {
       "type": "textarea",

@@ -4,25 +4,37 @@
 
 @layer base {
     h1 {
-        @apply text-h1 mb-[30px];
+        @apply text-h1 mb-[30px] font-GTSuper;
     }
     h2 {
-        @apply text-h1 mb-[30px];
+        @apply text-h1 mb-[30px] font-GTSuper;
     }
     h3 {
-        @apply text-h3 mb-[30px];
+        @apply text-h3 mb-[30px] font-GTSuper;
     }
     h4 {
-        @apply text-h4 mb-[30px];
+        @apply text-h4 mb-[30px] font-GTSuper;
     }
     p {
-        @apply text-body mb-[16px];
+        @apply text-body mb-[16px] font-GTSuper;
     }
 }
 
 @layer utilities {
+    body {
+        overflow-x: hidden;
+        width: 100vw;
+    }
     .section-wrapper {
         padding: 40px 0;
+    }
+
+    .top-nav-wrapper {
+        li {
+            &:last-child {
+                margin-right: 0;
+            }
+        }
     }
 
     .shopify-section:first-child .section-wrapper {
@@ -32,6 +44,20 @@
     .main-header .logo-wrapper {
         width: 920px;
         padding-top: 88px;
+        transition: filter 0.3s ease-in-out;
+        @media only screen and (max-width: 1024px) {
+            width: 600px;
+        }
+    }
+
+    .main-navigation {
+        ul {
+            li {
+                @media only screen and (max-width: 992px) {
+                    margin: 0 10px;
+                }
+            }
+        }
     }
 
     body.sticky-header .header-wrapper .main-header {
@@ -39,6 +65,15 @@
         top: 0;
         width: 100%;
         z-index: 10;
+        transition: background 0.3s ease-in-out;
+    }
+
+    body.header-transparent .header-wrapper .main-header {
+        background: #E5E5E5;
+        transition: background 0.3s ease-in-out;
+        .logo-wrapper {
+            filter: brightness(0);
+        }
     }
 
     .main-header .logo-wrapper {
@@ -66,6 +101,186 @@
 @layer components {
     .section-title {
         margin-bottom: 60px;
+    }
+
+    .card-column {
+        margin-bottom: 10px;
+    }
+
+    .col-fourth {
+        .card-column {
+            width: 25%;
+            .card-image {
+                height: calc((1400px / 4) * 0.70 - 10px);
+            }
+        }
+    }
+
+    .col-third {
+        .card-column {
+            width: 33.333%;
+            .card-image {
+                height: calc((1400px / 3) * 0.70 - 10px);
+            }
+        }
+    }
+
+    .col-half {
+        .card-column {
+            width: 50%;
+            .card-image {
+                height: calc((1400px / 2) * 0.70 - 10px);
+            }
+        }
+    }
+
+    .card-wrapper {
+        padding: 10px 10px 60px;
+        height: 100%;
+        display: flex;
+        flex-flow: column;
+        .card-image {
+            margin-bottom: 30px;
+        }
+        .card-content {
+            display: flex;
+            align-items: stretch;
+            flex-flow: row wrap;
+            text-align: center;
+            height: 100%;
+            padding: 0 20px;
+            .top-content {
+                margin-bottom: 17px;
+                width: 100%;
+                p {
+                    font-size: 14px;
+                    line-height: 18px;
+                    margin-bottom: 18px;
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+            h4 {
+                margin-bottom: 10px;
+                font-weight: 300;
+            }
+            .bottom-content {
+                width: 100%;
+                align-self: flex-end;
+                p {
+                    display: block;
+                    margin: 0;
+                    text-align: center;
+                    font-family: 'Platform', sans-serif;
+                    text-transform: uppercase;
+                    letter-spacing: 0.25em;
+                }
+                a {
+                    margin: inherit;
+                    text-decoration: underline;
+                    font-family: inherit;
+                    text-transform: inherit;
+                    letter-spacing: inherit;
+                }
+            }
+        }
+    }
+
+    .tiles-wrapper {
+        .tile-column {
+            .tile-wrapper {
+                height: calc(1400px * 0.57);
+                display: flex;
+                align-items: flex-end;
+                .tile-content {
+                    text-align: center;
+                    width: 100%;
+                    padding: 0 75px 45px;
+                    h4 {
+                        font-size: 64px;
+                        line-height: 64px;
+                        color: #FFFFFF;
+                        font-weight: 300;
+                    }
+                    p {
+                        font-size: 16px;
+                        line-height: 16px;
+                        letter-spacing: 0.25em;
+                        color: #FFFFFF;
+                        font-family: 'Platform', sans-serif;
+                        margin: 0;
+                        text-transform: uppercase;
+                        a {
+                            color: inherit;
+                            text-decoration: underline;
+                            font-size: inherit;
+                            line-height: inherit;
+                            letter-spacing: inherit;
+                            margin: inherit;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .carousel-container {
+        padding: 0 50px;
+        margin: 0 auto;
+    }
+    .carousel-wrapper {
+        position: relative;
+        .slick-arrow {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            width: 31px;
+            height: 15px;
+            z-index: 10;
+            left: -48px;
+            &:before {
+                width: 30px;
+                content: '';
+                position: absolute;
+                height: 1px;
+                background: #000000;
+                bottom: 0;
+                margin: auto;
+                top: 0;
+                left: 0;
+            }
+            &:after {
+                content: '';
+                width: 9px;
+                height: 9px;
+                border-left: 1px solid #000000;
+                border-bottom: 1px solid #000000;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                margin: auto;
+                transform: rotateZ(45deg);
+            }
+            &.slick-next {
+                left: auto;
+                transform: rotateZ(180deg);
+                right: -48px;
+            }
+        }
+    }
+    .product-slide {
+        .slide-image {
+            height: calc(1400px * 0.22);
+            a {
+                display: block;
+                position: relative;
+                height: 100%;
+                width: 100%;
+            }
+        }
     }
 }
 
