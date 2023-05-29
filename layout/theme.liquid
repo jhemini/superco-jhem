@@ -29,6 +29,13 @@
 
     {% render 'meta-tags' %}
 
+    <script>
+      window.theme = window.theme || {};
+      window.theme = {
+        moneyFormat: {{ shop.money_format | json }}
+      }
+    </script>
+
     <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
 
     {{ 'theme.css' | asset_url | stylesheet_tag }}
@@ -50,6 +57,7 @@
 
   <body class="template-{{ request.page_type | handle }}" style="background: {{ settings.body_bg }}">
     {% section 'header' %}
+    {% section 'cart-drawer' %}
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
       {{ 'accessibility.skip_to_text' | t }}
     </a>

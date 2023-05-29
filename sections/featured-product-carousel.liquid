@@ -13,6 +13,7 @@
 					<div class="product-slide px-[1px] w-[25%]">
 						<div class="inner-wrapper flex flex-row flex-wrap">
 							<div class="slide-image w-[100%]" style="background: url('{{ featured_image | img_url: 'master' }}') no-repeat center / cover;">
+								<a href="{{ product.url }}" data-product-id="{{ variant.id }}"></a>
 							</div>
 							<div class="product-meta w-[100%] flex flex-row items-center bg-[#FFFFFF] p-[20px]">
 								<p class="text-med w-[80%] font-GTSuper italic text-med mb-0 font-light"><a href="{{ product.url }}" data-product-id="{{ variant.id }}" class="text-med">{{ product.title }}</a></p>

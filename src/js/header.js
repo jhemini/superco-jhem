@@ -43,12 +43,13 @@ window.addEventListener('resize', function() {
 });
 
 window.addEventListener('load', function() {
+    let cartDrawerClose = document.querySelector('.cart-drawer .close-cart-drawer');
+    let cartToggle = document.querySelector('.nav-icon-wrapper .cart-toggle');
     mainHeaderHeight = mainHeader.offsetHeight;
     topHeaderHeight = topHeader.offsetHeight;
     window.dispatchEvent(new Event('resize'));
 
     window.addEventListener('scroll', function() {
-
         if (html.scrollTop >= topHeaderHeight) {
             document.body.classList.add('sticky-header');
             mainContent.style.marginTop = mainHeader.offsetHeight+'px';
@@ -74,17 +75,31 @@ window.addEventListener('load', function() {
             headerIntro.classList.add('collapse');
         }
 
+        // Changing sticky header background color
         if (html.scrollTop >= imageBannerBottom) {
             document.body.classList.add('header-transparent');
         } else {
             document.body.classList.remove('header-transparent');
         }
     });
+
+     // Cart Drawer Functions
+    cartToggle.addEventListener('click', function() {
+        if(document.body.classList.contains('cart-active')) {
+            document.body.classList.remove('cart-active');
+        } else {
+            document.body.classList.add('cart-active');
+        }
+    });
+    cartDrawerClose.addEventListener('click', function() {
+        if(document.body.classList.contains('cart-active')) {
+            document.body.classList.remove('cart-active');
+        }
+    });
 });
 
 window.addEventListener('DOMContentLoaded', function() {
-    const hamburgerIcon = document.querySelector('.hamburger-wrapper');
-    const bodyElement =
+    let hamburgerIcon = document.querySelector('.hamburger-wrapper');
 
     hamburgerIcon.addEventListener('click', function() {
         if (document.body.classList.contains('mobile-menu-active')) {
@@ -92,7 +107,7 @@ window.addEventListener('DOMContentLoaded', function() {
         } else {
             document.body.classList.add('mobile-menu-active');
         }
-    })
+    });
 });
 
 export default headerComponent;

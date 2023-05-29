@@ -6,7 +6,8 @@ module.exports = {
     './assets/*.{json,liquid}',
     './sections/*.{json,liquid}',
     './snippets/*.{json,liquid}',
-    './templates/**/*.{json,liquid}'
+    './templates/**/*.{json,liquid}',
+    "./src/**/*.{js,jsx,ts,tsx}"
   ],
   theme: {
     extend: {},
