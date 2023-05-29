@@ -1,0 +1,32 @@
+<div class="banner-image-section section-wrapper">
+  <div class="flex flex-row">
+    <div class="w-[100%]">
+      <div class="image-banner">
+        <div
+          class="imaage-object"
+          style="background: url('{{ section.settings.image_banner | img_url: 'master' }}')no-repeat center / cover;"
+        >
+          <img src="{{ section.settings.image_banner | img_url: 'master' }}" alt="" style="opacity: 0;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% schema %}
+{
+  "name": "Banner Image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image_banner",
+      "label": "Image Banner"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner Image",
+      "category": "Banner Sections"
+    }
+  ]
+}
+{% endschema %}

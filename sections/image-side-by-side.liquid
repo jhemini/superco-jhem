@@ -1,0 +1,75 @@
+<div class="two-image-wrapper section-wrapper">
+    <div class="container content-max">
+        {% if section.settings.section_title != blank %}
+					<div class="section-title text-center font-light">
+						<h2 class="mb-0">{{ section.settings.section_title }}</h2>
+					</div>
+        {% endif %}
+        {% if section.blocks != blank %}
+            <div class="tiles-wrapper flex flex-row flex-wrap mx-[-10px] items-stretch max-[767px]:mx-[-20px]">
+                {% for block in section.blocks %}
+									<div class="tile-column px-[5px] w-[50%] max-[767px]:w-[100%] max-[767px]:mb-[20px] max-[767px]:px-0">
+										<div class="tile-wrapper" style="background: url('{{ block.settings.bg_image | img_url: 'master' }}')no-repeat center / cover;">
+											<div class="tile-content">
+												{% if block.settings.tile_title != blank %}
+												<h4 class="max-[767px]:text-h4">{{ block.settings.tile_title }}</h4>
+												{% endif %}
+												{% if block.settings.tile_link_label != blank %}
+												<p class="max-[767px]:text-[12px]">{% if block.settings.tile_link != blank %}<a href="{{ block.settings.tile_link }}">{% endif %}{{ block.settings.tile_link_label }}{% if block.settings.tile_link != blank %}</a>{% endif %}</p>
+												{% endif %}
+											</div>
+										</div>
+									</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Text-overlay Images",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tile_content",
+      "name": "Tile Content",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "bg_image",
+          "label": "Image Background"
+        },
+        {
+          "type": "text",
+          "id": "tile_title",
+          "label": "Tile Title"
+        },
+        {
+          "type": "text",
+          "id": "tile_link_label",
+          "label": "Tile Link Label"
+        },
+        {
+          "type": "url",
+          "id": "tile_link",
+          "label": "Tile Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text-overlay Images",
+      "category": "Tile Content"
+    }
+  ]
+}
+{% endschema %}

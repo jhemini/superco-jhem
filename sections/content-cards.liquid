@@ -1,0 +1,192 @@
+<div class="cards-section-wrapper section-wrapper">
+  <div class="container content-max">
+    {% if section.settings.section_title %}
+      <div class="section-title text-center font-light">
+        <h2 class="mb-0">{{ section.settings.section_title }}</h2>
+      </div>
+    {% endif %}
+    {% if section.blocks != blank %}
+      <div class="cards-wrapper flex flex-row flex-wrap mx-[-10px] items-stretch {{ section.settings.column_count }}" id="carousel-{{- section.id -}}">
+        {% for block in section.blocks %}
+          <div class="card-column px-[5px]">
+            <div class="card-wrapper" style="background: {{ block.settings.card_bg }};">
+              <div
+                class="card-image"
+                style="background: url('{{ block.settings.card_image | img_url: 'master' }}') no-repeat center / cover;"
+              >
+                <img
+                  src="{{ block.settings.card_image | img_url: 'master' }}"
+                  loading="lazy"
+                  alt="{{ block.settings.card_title }}"
+                  style="opacity: 0;"
+                >
+              </div>
+              <div class="card-content">
+                <div class="top-content">
+                  {% if block.settings.card_title != blank %}
+                    <h4>{{ block.settings.card_title }}</h4>
+                  {% endif %}
+                  {% if block.settings.card_desc != blank %}
+                    <p>{{ block.settings.card_desc }}</p>
+                  {% endif %}
+                </div>
+                {% if block.settings.card_link_label %}
+                <div class="bottom-content">
+                  <p>{% if block.settings.card_link %}<a href="{{ block.settings.card_link }}">{% endif %}{{ block.settings.card_link_label }}{% if block.settings.card_link %}</a>{% endif %}</p>
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+<script>
+	$(document).ready(function() {
+    initGridCarousel();
+	});
+
+  $(window).on('resize', function() {
+    if ($(window).width() < 1201) {
+      if (!$('#carousel-{{- section.id -}}').hasClass('slick-initialized')) {
+        initGridCarousel();
+      }
+    } else {
+      if ($('#carousel-{{- section.id -}}').hasClass('slick-initialized')) {
+        $('#carousel-{{- section.id -}}').slick('unslick');
+        $('#carousel-{{- section.id -}}').removeClass('slick-initialized slick-slider slick-dotted');
+      }
+    }
+  });
+
+  function initGridCarousel() {
+    $('#carousel-{{- section.id -}}').slick({
+			slidesToShow: 4,
+			slidesToScroll: 1,
+			dots: false,
+			arrows: true,
+			prevArrow: `<button class="slick-prev slick-arrow" aria-label="Previous"></button>`,
+			nextArrow: `<button class="slick-next slick-arrow" aria-label="Next"></button>`,
+			responsive: [
+        {
+          breakpoint: 1611,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            arrows: false
+          }
+        },
+        {
+          breakpoint: 1201,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            arrows: true,
+          }
+        },
+        {
+          breakpoint: 992,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            arrows: true,
+          }
+        },
+        {
+          breakpoint: 769,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            arrows: true,
+          }
+        }
+			]
+		})
+  }
+
+</script>
+
+
+{% schema %}
+{
+  "name": "Content Cards",
+  "settings": [
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title"
+    },
+    {
+      "type": "select",
+      "id": "column_count",
+      "label": "Column Count",
+      "options": [
+        {
+          "group": "column",
+          "value": "col-half",
+          "label": "2 Columns"
+        },
+        {
+          "group": "column",
+          "value": "col-third",
+          "label": "3 Columns"
+        },
+        {
+          "group": "column",
+          "value": "col-fourth",
+          "label": "4 Columns"
+        }
+      ],
+      "default": "col-fourth",
+      "info": "Number of cards per row"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card_content",
+      "name": "Card Content",
+      "settings": [
+        {
+          "type": "color",
+          "id": "card_bg",
+          "label": "Card Background Color"
+        },
+        {
+          "type": "image_picker",
+          "id": "card_image",
+          "label": "Card Image"
+        },
+        {
+          "type": "text",
+          "id": "card_title",
+          "label": "Card Title"
+        },
+        {
+          "type": "textarea",
+          "id": "card_desc",
+          "label": "Card Description"
+        },
+        {
+          "type": "text",
+          "id": "card_link_label",
+          "label": "Card Link Label"
+        },
+        {
+          "type": "url",
+          "id": "card_link",
+          "label": "Card Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Content Cards",
+      "category": "Tile Content"
+    }
+  ]
+}
+{% endschema %}
